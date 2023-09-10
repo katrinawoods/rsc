@@ -62,7 +62,7 @@ body {
     font-size: 1.5em;
     
     /* Default state is hidden */
-    display: none;
+   // display: none;
 }
 
 /* Display specific icons based on feedback type */
@@ -77,7 +77,7 @@ body {
 
 .red .icon.cross {
     color: var(--icon-red);
-    right: 30px;
+    right: 10px;
 }
 
 /* Card hover effect */
@@ -122,6 +122,17 @@ body {
 :focus {
     outline: 2px solid var(--highlight-yellow);
 }
+
+/* Disable hover and select styles after feedback is given */
+.feedback-given .card:hover,
+.feedback-given .card.selected {
+    background-color: var(--card-bg); /* Reset the background to its default */
+    box-shadow: 0 4px 6px var(--shadow-light); /* Reset the box-shadow to its default */
+    border: 1px solid var(--card-border); /* Reset the border to its default */
+}
+
+
+
 
 /* --- Button Styles --- */
 #buttonContainer {
