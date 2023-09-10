@@ -108,7 +108,6 @@ body {
 
 /* Style for unselectable card */
 .unselectable-card {
-    opacity: 0.5;
     pointer-events: none;  
 }
 
