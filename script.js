@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         cards.forEach((card, index) => {
             card.classList.add('unselectable-card');  // Make cards unselectable during feedback
+            card.setAttribute('tabindex', '-1');
             card.classList.remove('green', 'red');  // Reset feedback colors
 
             // Remove any existing feedback icons
