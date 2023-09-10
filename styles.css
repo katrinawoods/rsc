@@ -15,12 +15,13 @@ body {
     padding: 20px;
 }
 
-
+ 
 
 /* Styles for the cards */
 .card {
     position: relative;
     padding: 15px;
+    padding-right: 40px;
     margin: 10px;
     display: inline-block;
     cursor: pointer;
@@ -34,9 +35,9 @@ body {
 
 .icon {
     position: absolute;
-    right: 10px;          /* Adjust this as needed to position the icon */
-    top: 50%;
-    transform: translateY(-50%);  /* Centers the icon vertically */
+    top: 50%;  /* This centers the icons vertically */
+    right: 10px;  /* This positions the icons 10px from the right edge of the card */
+    transform: translateY(-50%);  /* This is a trick to perfectly vertically center the icons */
     font-size: 1.5em;    /* Adjust as needed for your desired icon size */
     display: none;       /* Hide the icon by default */
 }
@@ -47,10 +48,14 @@ body {
 
 .green .icon.tick {
     color: #005500; /* or another color that contrasts well with the .green background */
+     right: 10px;  /* Position of the tick icon */
 }
 
 .red .icon.cross {
     color: #550000; /* or another color that contrasts well with the .red background */
+
+    right: 30px;  /* Position of the cross icon; you might need to adjust based on the size of your icons */
+
 }
 
 
