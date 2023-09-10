@@ -1,156 +1,177 @@
-/* Styles for the main header */
+/* --- Custom Properties Definition --- */
+:root {
+    /* Basic Color palette */
+    --navy: navy;
+    --bg-light: #f9f9f9;
+    --card-bg: #fffde7;
+    --card-border: #d1c8b9;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --highlight-yellow: #FFCD00;
+    --green-feedback: #a8e6cf;
+    --red-feedback: #ff8a80;
+    --icon-green: #005500;
+    --icon-red: #550000;
+    --button-navy: navy;
+    --button-hover: #4a4a8a;
+    --button-focus: #00c1d4;
+}
+
+/* --- Header Styles --- */
 h1 {
     font-family: 'Helvetica', sans-serif;
-    color: navy;
+    color: var(--navy);
     font-size: 2em;
     margin-top: 0;
 }
 
+/* --- Global Styles --- */
 /* Default font and background for the body */
 body {
     font-family: 'Helvetica', sans-serif;
-    background-color: #f9f9f9; 
-    color: navy;
+    background-color: var(--bg-light); 
+    color: var(--navy);
     margin: 0;
     padding: 20px;
 }
 
- 
-
-/* Styles for the cards */
+/* --- Card Styles --- */
 .card {
+    /* Basic positioning and spacing */
     position: relative;
     padding: 15px;
     padding-right: 40px;
     margin: 10px;
     display: inline-block;
+    
+    /* Visual styles */
     cursor: pointer;
-    background-color: #fffde7;
-    border: 1px solid #d1c8b9; 
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border); 
     border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--shadow-light);
     outline: none;
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .icon {
+    /* Positioning for icon inside card */
     position: absolute;
-    top: 50%;  /* This centers the icons vertically */
-    right: 10px;  /* This positions the icons 10px from the right edge of the card */
-    transform: translateY(-50%);  /* This is a trick to perfectly vertically center the icons */
-    font-size: 1.5em;    /* Adjust as needed for your desired icon size */
-    display: none;       /* Hide the icon by default */
+    top: 50%;  
+    right: 10px; 
+    transform: translateY(-50%);
+    font-size: 1.5em;
+    
+    /* Default state is hidden */
+    display: none;
 }
 
+/* Display specific icons based on feedback type */
 .green .icon.tick, .red .icon.cross {
-    display: block;  /* Only show the relevant icon based on the feedback */
+    display: block;
 }
 
 .green .icon.tick {
-    color: #005500; /* or another color that contrasts well with the .green background */
-     right: 10px;  /* Position of the tick icon */
+    color: var(--icon-green);
+    right: 10px;
 }
 
 .red .icon.cross {
-    color: #550000; /* or another color that contrasts well with the .red background */
-
-    right: 30px;  /* Position of the cross icon; you might need to adjust based on the size of your icons */
-
+    color: var(--icon-red);
+    right: 30px;
 }
 
-
-/* Highlight on mouse hover */
-.hover {
-    background-color: #FFCD00; /* Highlight yellow */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); 
+/* Card hover effect */
+.card:hover {
+    background-color: var(--highlight-yellow);
+    box-shadow: 0 6px 10px var(--shadow-light);
 }
 
-/* Feedback colours */
+/* Card feedback color backgrounds */
 .green {
-    background-color: #a8e6cf; 
-    border: 1px solid #d1c8b9; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--green-feedback);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 4px 6px var(--shadow-light);
 }
 
 .red {
-    background-color: #ff8a80;
-    border: 1px solid #d1c8b9; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--red-feedback);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 4px 6px var(--shadow-light);
 }
 
-/* Highlight the selected card */
+/* Styles for the selected card state */
 .selected {
-    background-color: #FFCD00; 
-    border: 2px solid #d1c8b9; 
+    background-color: var(--highlight-yellow);
+    border: 2px solid var(--card-border);
     box-shadow: 0px 0px 10px 4px rgba(217, 210, 178, 0.5);
 }
 
+/* Style for unselectable card */
 .unselectable-card {
     opacity: 0.5;
     pointer-events: none;  
 }
 
-/* Feedback message style */
+/* Feedback message styles */
 #feedback {
     margin-top: 20px;
     font-weight: bold;
     font-size: 1.1em;
 }
 
-/* Focus styling */
+/* Global focus styles */
 :focus {
-    outline: 2px solid #FFCD00; /* Custom focus outline */
+    outline: 2px solid var(--highlight-yellow);
 }
 
-/* Styles for button container */
+/* --- Button Styles --- */
 #buttonContainer {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
 
-/* Styles for buttons */
 button {
     flex: 1;
     padding: 10px 15px;
     margin-right: 10px;
     border: none;
-    background-color: navy;
+    background-color: var(--button-navy);
     color: white;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.2s;
-    max-width: 200px; /* Sets the maximum width */
+    max-width: 200px;
 }
 
 button:last-child {
-    margin-right: 0; /* No right margin for the last button */
+    margin-right: 0;
 }
 
 button:hover {
-    background-color: #4a4a8a;
+    background-color: var(--button-hover);
 }
 
 button:focus {
-    border: 2px solid #00c1d4; /* Cyan border */
+    border: 2px solid var(--button-focus);
 }
 
+/* Container for content */
 .content-container {
     width: 100%;
 }
 
-
-
-
+/* --- Media Queries for Responsiveness --- */
 @media only screen and (max-width: 768px) {
+    /* Adjust card styles for mobile view */
     .card {
         display: block;
         width: 100%;
         box-sizing: border-box;
-        margin-bottom: 10px; /* or any value you find visually appealing */
+        margin-bottom: 10px;
     }
 
     .card:last-child {
-        margin-bottom: 0; /* No bottom margin for the last card to prevent extra spacing before the buttons */
+        margin-bottom: 0;
     }
 }
