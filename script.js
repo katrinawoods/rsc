@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     let selectedCard = null;
     let correctOrder = [];
+let feedbackMode = false;
 
     const resetActivityButton = document.getElementById('resetActivity');
     const checkAnswerButton = document.getElementById('checkAnswer');
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     if (resetActivityButton) {
         resetActivityButton.addEventListener('click', function() {
+             feedbackMode = false;
             location.reload();
         });
     } else {
@@ -70,20 +72,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function cardInteractionHandler(e) {
-        if (e.type === 'touchend') {
-            e.preventDefault();
-        }
-        if (!selectedCard) {
-            selectedCard = this;
-            this.classList.add('selected');
-            console.log("Card selected:", this.innerHTML.trim());
-        } else {
-            swapCards(selectedCard, this);
-            selectedCard.classList.remove('selected');
-            console.log("Cards swapped.");
-            selectedCard = null;
-        }
+    if (feedbackMode) return;  // Exit if in feedback mode
+
+    if (e.type === 'touchend') {
+        e.preventDefault();
     }
+    if (!selectedCard) {
+        selectedCard = this;
+        this.classList.add('selected');
+        console.log("Card selected:", this.innerHTML.trim());
+    } else {
+        swapCards(selectedCard, this);
+        selectedCard.classList.remove('selected');
+        console.log("Cards swapped.");
+        selectedCard = null;
+    }
+}
+
    
  //remove italics tags
 function stripHtml(html) {
@@ -96,6 +101,8 @@ function stripHtml(html) {
 function checkAnswer() {
     let cards = document.querySelectorAll('.card');
     let isCorrect = true;
+    feedbackMode = true;
+}
 
     cards.forEach((card, index) => {
         card.classList.remove('green', 'red');  // Reset previous feedback
@@ -139,7 +146,6 @@ function checkAnswer() {
         feedbackEl.textContent = "Incorrect. Please try again.";
     }
 }
-
 
 
     fetchCardData();
