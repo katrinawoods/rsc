@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const checkAnswerButton = document.getElementById('checkAnswer');
     const cardContainer = document.getElementById('cardContainer');
     const feedbackEl = document.getElementById('feedback');
+    feedbackEl.setAttribute('aria-live', 'polite');  // Announces changes in feedback content
 
     // Event listener for the reset button
     if (resetActivityButton) {
@@ -49,15 +50,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     // Function to populate the cards based on fetched data
-    function populateCards(cardsData) {
+
+            function populateCards(cardsData) {
         cardsData.forEach(card => {
             let div = document.createElement('div');
             div.className = 'card';
             div.dataset.id = card.id;
             div.innerHTML = card.content;
             div.setAttribute('tabindex', '0');  // Make the card selectable via keyboard
+            div.setAttribute('role', 'listitem');  // Specify the role for the card
+            div.setAttribute('aria-label', `Reference part: ${card.content}`);  // Add an aria-label for better clarity
             addCardListeners(div);  // Add event listeners to each card
             cardContainer.appendChild(div);
+    
         });
     }
 
@@ -76,16 +81,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function cardInteractionHandler(e) {
         if (feedbackMode) return;  // If in feedback mode, exit and do nothing
 
+
         if (e.type === 'touchend') {
             e.preventDefault();  // Prevent default behavior for touchend
         }
         if (!selectedCard) {
             selectedCard = this;  // If no card is selected, select the current card
+             this.setAttribute('aria-selected', 'true');
             this.classList.add('selected');
             console.log("Card selected:", this.innerHTML.trim());
         } else {
             swapCards(selectedCard, this);  // If a card is already selected, swap with the current card
             selectedCard.classList.remove('selected');
+            selectedCard.removeAttribute('aria-selected');
             console.log("Cards swapped.");
             selectedCard = null;  // Reset the selected card
         }
@@ -153,4 +161,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Fetch the card data and initiate the activity
     fetchCardData();
 
+    
 });
