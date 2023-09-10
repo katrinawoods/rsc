@@ -128,5 +128,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
     } else {
         feedbackEl.textContent = "Incorrect. Please try again.";
     }
-}
+}); 
 
