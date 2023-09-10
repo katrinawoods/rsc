@@ -85,6 +85,11 @@ body {
     box-shadow: 0px 0px 10px 4px rgba(217, 210, 178, 0.5);
 }
 
+.unselectable-card {
+    opacity: 0.5;
+    pointer-events: none;  
+}
+
 /* Feedback message style */
 #feedback {
     margin-top: 20px;
@@ -133,6 +138,9 @@ button:focus {
 .content-container {
     width: 100%;
 }
+
+
+
 
 @media only screen and (max-width: 768px) {
     .card {
