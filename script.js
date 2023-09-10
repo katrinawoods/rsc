@@ -109,6 +109,8 @@ function checkAnswer() {
 
         // Get the clean content of the card for comparison
         let cardContent = stripHtml(card.innerHTML).trim();
+        let correctAnswerWithHtml = correctOrder[index];
+        let correctAnswerWithoutHtml = stripHtml(correctOrder[index]).trim();
 
         // Add the tick and cross icons back
         let tickIcon = document.createElement('span');
@@ -121,9 +123,9 @@ function checkAnswer() {
         crossIcon.innerHTML = '✗';
         card.appendChild(crossIcon);
 
-        if (cardContent !== correctOrder[index]) {
+        if (cardContent !== correctAnswerWithHtml && cardContent !== correctAnswerWithoutHtml) {
             card.classList.add('red');
-            console.log(`Card at index ${index} is incorrect. Expected: ${correctOrder[index]}, Found: ${cardContent}`);
+            console.log(`Card at index ${index} is incorrect. Expected: ${correctAnswerWithHtml} or ${correctAnswerWithoutHtml}, Found: ${cardContent}`);
             isCorrect = false;
         } else {
             card.classList.add('green');
@@ -131,13 +133,13 @@ function checkAnswer() {
         }
     });
 
-    const feedbackEl = document.getElementById('feedback');
     if (isCorrect) {
         feedbackEl.textContent = "Correct! Well done.";
     } else {
         feedbackEl.textContent = "Incorrect. Please try again.";
     }
 }
+
 
 
     fetchCardData();
