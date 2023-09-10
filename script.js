@@ -84,19 +84,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
             selectedCard = null;
         }
     }
-
     function checkAnswer() {
-        let cards = document.querySelectorAll('.card');
-        let isCorrect = true;
-        cards.forEach((card, index) => {
-            checkCard(card, index);
-        });
-        feedbackEl.textContent = isCorrect ? "Correct! Well done." : "Incorrect. Please try again.";
-    }
+    let cards = document.querySelectorAll('.card');
+    let isCorrect = true;
 
-    function checkCard(card, index) {
-        card.classList.remove('green', 'red');
-        
+    cards.forEach((card, index) => {
+        card.classList.remove('green', 'red');  // Reset previous feedback
+
         // Remove existing icons (if any)
         let existingTickIcon = card.querySelector('.icon.tick');
         let existingCrossIcon = card.querySelector('.icon.cross');
@@ -104,7 +98,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (existingTickIcon) existingTickIcon.remove();
         if (existingCrossIcon) existingCrossIcon.remove();
 
-        // Add the tick and cross icons
+        // Now, get the clean content of the card for comparison
+        let cardContent = card.textContent.trim();
+
+        // Add the tick and cross icons back
         let tickIcon = document.createElement('span');
         tickIcon.classList.add('icon', 'tick');
         tickIcon.innerHTML = '✓';
@@ -115,15 +112,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
         crossIcon.innerHTML = '✗';
         card.appendChild(crossIcon);
 
-        if (card.innerHTML.trim() !== correctOrder[index]) {
+        if (cardContent !== correctOrder[index]) {
             card.classList.add('red');
-            console.log(`Card at index ${index} is incorrect. Expected: ${correctOrder[index]}, Found: ${card.innerHTML.trim()}`);
+            console.log(`Card at index ${index} is incorrect. Expected: ${correctOrder[index]}, Found: ${cardContent}`);
             isCorrect = false;
         } else {
             card.classList.add('green');
             console.log(`Card at index ${index} is correct.`);
         }
+    });
+
+    const feedbackEl = document.getElementById('feedback');
+    if (isCorrect) {
+        feedbackEl.textContent = "Correct! Well done.";
+    } else {
+        feedbackEl.textContent = "Incorrect. Please try again.";
     }
+}
+
 
     fetchCardData();
 
