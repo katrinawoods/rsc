@@ -84,7 +84,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
             selectedCard = null;
         }
     }
-    function checkAnswer() {
+   
+ //remove italics tags
+function stripHtml(html) {
+    var tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
+}
+
+
+function checkAnswer() {
     let cards = document.querySelectorAll('.card');
     let isCorrect = true;
 
@@ -98,8 +107,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (existingTickIcon) existingTickIcon.remove();
         if (existingCrossIcon) existingCrossIcon.remove();
 
-        // Now, get the clean content of the card for comparison
-        let cardContent = card.textContent.trim();
+        // Get the clean content of the card for comparison
+        let cardContent = stripHtml(card.innerHTML).trim();
 
         // Add the tick and cross icons back
         let tickIcon = document.createElement('span');
