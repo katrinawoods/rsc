@@ -132,11 +132,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
             let tickIcon = document.createElement('span');
             tickIcon.classList.add('icon', 'tick');
             tickIcon.innerHTML = '✓';
+            tickIcon.setAttribute('aria-hidden', 'true');
             card.appendChild(tickIcon);
 
             let crossIcon = document.createElement('span');
             crossIcon.classList.add('icon', 'cross');
             crossIcon.innerHTML = '✗';
+            crossIcon.setAttribute('aria-hidden', 'true');
             card.appendChild(crossIcon);
 
             // Check and provide feedback based on the card's correctness
