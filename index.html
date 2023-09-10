@@ -13,22 +13,21 @@
 
     <p>Instructions: Put the parts of the reference into the correct order. Select the parts to swap their positions.</p>
 
-
     <div class="content-container">
         
-    <div id="cardContainer">
-        <!-- Cards will be populated here by the JavaScript -->
-    </div>
+        <div id="cardContainer" role="list" aria-label="Cards for reference sorting">
+            <!-- Cards will be populated here by the JavaScript -->
+        </div>
 
-    <div id="buttonContainer">
-            <button id="resetActivity">Reset</button>
-        <button id="checkAnswer">Check Answer</button>
-    </div>
+        <div id="buttonContainer">
+            <button id="resetActivity" aria-label="Reset the activity">Reset</button>
+            <button id="checkAnswer" aria-label="Check if the reference order is correct">Check Answer</button>
+        </div>
         
-</div>
+    </div>
 
- <p id="feedback"></p>
-    
+    <p id="feedback" aria-live="polite"></p>
+
     <script src="script.js"></script>
 </body>
 
