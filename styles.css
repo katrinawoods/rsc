@@ -15,8 +15,11 @@ body {
     padding: 20px;
 }
 
+
+
 /* Styles for the cards */
 .card {
+    position: relative;
     padding: 15px;
     margin: 10px;
     display: inline-block;
@@ -28,6 +31,28 @@ body {
     outline: none;
     transition: background-color 0.3s, box-shadow 0.3s;
 }
+
+.icon {
+    position: absolute;
+    right: 10px;          /* Adjust this as needed to position the icon */
+    top: 50%;
+    transform: translateY(-50%);  /* Centers the icon vertically */
+    font-size: 1.5em;    /* Adjust as needed for your desired icon size */
+    display: none;       /* Hide the icon by default */
+}
+
+.green .icon.tick, .red .icon.cross {
+    display: block;  /* Only show the relevant icon based on the feedback */
+}
+
+.green .icon.tick {
+    color: #005500; /* or another color that contrasts well with the .green background */
+}
+
+.red .icon.cross {
+    color: #550000; /* or another color that contrasts well with the .red background */
+}
+
 
 /* Highlight on mouse hover */
 .hover {
